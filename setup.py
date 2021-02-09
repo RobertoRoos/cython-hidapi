@@ -13,7 +13,7 @@ src = ["hid.pyx", "chid.pxd"]
 # Attempt to install dependencies in RTD environment
 read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
 if read_the_docs_build:
-    subprocess.call(['apt', 'install', 'libusb-1.0-0-dev', 'libudev-dev'])
+    subprocess.call(['apt', 'install', '-y', 'libusb-1.0-0-dev', 'libudev-dev'])
 
 
 def hidapi_src(platform):
