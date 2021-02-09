@@ -14,6 +14,12 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('../'))  # Add root directory to path
 
+# Attempt to install dependencies
+import subprocess
+read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
+if read_the_docs_build:
+    subprocess.call(['apt', 'install', 'libusb-1.0-0-dev', 'libudev-dev'])
+
 
 # -- Project information -----------------------------------------------------
 
