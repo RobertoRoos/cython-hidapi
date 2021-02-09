@@ -37,20 +37,23 @@ if sys.platform.startswith("linux"):
         else:
             src.append(hidapi_src("libusb"))
             
+        incl_dirs = [hidapi_include]
+        lib_dirs = []
+            
         if is_conda:
             path = os.path.dirname(sys.executable)
-            lusbusb_path = os.path.realpath(os.path.join(path, "../include/libusb-1.0"))
-            libs = [os.path.realpath(os.path.join(path, "../lib"))]
+            incl_dirs.append(os.path.realpath(os.path.join(path, "../include/libusb-1.0")))
+            incl_dirs.append(os.path.realpath(os.path.join(path, "../x86_64-conda-linux-gnu/sysroot/usr/include")))
+            lib_dirs.append(os.path.realpath(os.path.join(path, "../lib")))
         else:
-            lusbusb_path = "/usr/include/libusb-1.0"
-            libs = []
+            incl_dirs.append("/usr/include/libusb-1.0")
 
         modules.append(
             Extension(
                 "hid",
                 sources=src,
-                include_dirs=[hidapi_include, lusbusb_path],
-                library_dirs=libs,
+                include_dirs=incl_dirs,
+                library_dirs=lib_dirs,
                 libraries=libs,
             )
         )
