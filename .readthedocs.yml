@@ -17,12 +17,12 @@ submodules:
 formats:
    - pdf
 
+# Specify conda environment
+conda:
+   environment: docs/environment.yml
+
 # Optionally set the version of Python and requirements required to build your docs
 python:
-   version: 3.8
    install:
-   - requirements: docs/requirements.txt
-   #- method: pip
-   #  path: .
    - method: setuptools
      path: .

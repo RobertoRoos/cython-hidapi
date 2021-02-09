@@ -15,13 +15,6 @@ def hidapi_src(platform):
     return os.path.join(hidapi_topdir, platform, "hid.c")
 
 
-# Add flag for RTD (not possible from .readthedocs.yml config)
-#read_the_docs_build = os.environ.get("READTHEDOCS", None) == "True"
-read_the_docs_build = True
-if read_the_docs_build:
-    sys.argv.append("--without-libusb")
-
-
 if "--with-system-hidapi" in sys.argv:
     sys.argv.remove("--with-system-hidapi")
     system_hidapi = 1
@@ -43,7 +36,7 @@ if sys.platform.startswith("linux"):
             Extension(
                 "hid",
                 sources=src,
-                include_dirs=[hidapi_include, "/usr/include/libusb-1.0"],
+                include_dirs=[hidapi_include, "/usr/include/libusb-1.0", "$CONDA_PREFIX/include/libusb-1.0"],
                 libraries=libs,
             )
         )
