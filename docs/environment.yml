@@ -27,6 +27,7 @@ dependencies:
   - libgcc-ng=9.3.0=h2828fa1_18
   - libgomp=9.3.0=h2828fa1_18
   - libstdcxx-ng=9.3.0=h6de172a_18
+  - libudev-cos6-x86_64=147=h9d98e8f_104
   - libusb=1.0.24=h9f566bc_1
   - markupsafe=1.1.1=py39h27cfd23_0
   - ncurses=6.2=he6710b0_1
