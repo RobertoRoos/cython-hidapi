@@ -15,6 +15,7 @@ def hidapi_src(platform):
     return os.path.join(hidapi_topdir, platform, "hid.c")
 
 
+
 if "--with-system-hidapi" in sys.argv:
     sys.argv.remove("--with-system-hidapi")
     system_hidapi = 1
