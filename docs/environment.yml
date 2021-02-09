@@ -10,3 +10,4 @@ dependencies:
   - sphinx
   - sphinx_rtd_theme
   - gcc_linux-64
+  - libudev-devel-cos6-x86_64
