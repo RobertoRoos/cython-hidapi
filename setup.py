@@ -15,6 +15,9 @@ def hidapi_src(platform):
     return os.path.join(hidapi_topdir, platform, "hid.c")
 
 
+# Check if run with conda
+is_conda = os.path.exists(os.path.join(sys.prefix, 'conda-meta'))
+
 
 if "--with-system-hidapi" in sys.argv:
     sys.argv.remove("--with-system-hidapi")
@@ -33,11 +36,18 @@ if sys.platform.startswith("linux"):
             libs.append("hidapi-libusb")
         else:
             src.append(hidapi_src("libusb"))
+            
+        if is_conda:
+            path = os.path.dirname(sys.executable)
+            lusbusb_path = os.path.realpath(os.path.join(path, "../include/libusb-1.0"))
+        else:
+            lusbusb_path = "/usr/include/libusb-1.0"
+
         modules.append(
             Extension(
                 "hid",
                 sources=src,
-                include_dirs=[hidapi_include, "/usr/include/libusb-1.0", "$CONDA_PREFIX/include/libusb-1.0"],
+                include_dirs=[hidapi_include, lusbusb_path],
                 libraries=libs,
             )
         )
