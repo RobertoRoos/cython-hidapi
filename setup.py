@@ -16,7 +16,8 @@ def hidapi_src(platform):
 
 
 # Add flag for RTD (not possible from .readthedocs.yml config)
-read_the_docs_build = os.environ.get("READTHEDOCS", None) == "True"
+#read_the_docs_build = os.environ.get("READTHEDOCS", None) == "True"
+read_the_docs_build = True
 if read_the_docs_build:
     sys.argv.append("--without-libusb")
 
